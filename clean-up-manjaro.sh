@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Helper para formatar bonito (B, KB, MB, GB)
 format_size() {
     local size=$1
     if [ "$size" -ge 1073741824 ]; then
@@ -14,7 +13,6 @@ format_size() {
     fi
 }
 
-# Pega o espaço usado em bytes
 get_used_space() {
     df --output=used -B1 / | tail -1 | tr -dc '0-9'
 }
@@ -50,10 +48,10 @@ else
     echo "⚠️ Flatpak is not installed, skipping Flatpak cleanup."
 fi
 
-# Espaço usado depois da limpeza
+
 used_after=$(get_used_space)
 
-# Calcula espaço liberado
+
 freed=$(( $(get_used_space) - $used_after ))
 
 echo ""
